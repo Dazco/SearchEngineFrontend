@@ -34,7 +34,7 @@ namespace SearchEngineGUI2
             InitializeComponent();
         }
 
-        private static async Task SearchQuery(string query, ListView results)
+        private static async Task SearchQuery(string query, ListView results, Label queryTime, Label rankTime)
         {
             string url = "https://localhost:5001/api/search?query=" + query;
             client.DefaultRequestHeaders.Accept.Clear();
@@ -44,6 +44,8 @@ namespace SearchEngineGUI2
 
             var streamTask = client.GetStreamAsync(url);
             var response = await JsonSerializer.DeserializeAsync<SearchResponse>(await streamTask);
+            queryTime.Content = "Query Time: " + (response.queryTime / 1000.00).ToString() + " s";
+            rankTime.Content = "Ranking Time: " + (response.rankingTime / 1000.00).ToString() + " s";
             results.Items.Clear();
             foreach (KeywordsDocument document in response.documents)
             {
@@ -55,7 +57,6 @@ namespace SearchEngineGUI2
                 Run run = new Run();
                 run.Text = document.documentName;
                 link.Inlines.Add(run);
-                MessageBox.Show(document.documentLink);
                 link.RequestNavigate += (sender, e) =>
                 {
                     var url = e.Uri.ToString();
@@ -82,7 +83,7 @@ namespace SearchEngineGUI2
                 MessageBox.Show("Search can not be empty");
                 return;
             }
-            await SearchQuery(query, results);
+            await SearchQuery(query, results, queryTime, rankTime);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -6,26 +6,27 @@
         xmlns:local="clr-namespace:SearchEngineGUI2"
         mc:Ignorable="d"
         Title="FOOGLE" Height="450" Width="800" Margin="0,11,0,0">
-    
-    
+
+
     <Grid Margin="10" Height="406">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="99*" />
+            <RowDefinition Height="104*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="31*" />
             <ColumnDefinition Width="17*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row ="1"  Width="400" Margin="0 100 0 0">
+        <StackPanel Margin="52,100,10,0" Grid.RowSpan="2">
             <TextBox x:Name="searchBox" Height="35" VerticalAlignment="Center"></TextBox>
             <Button Width="200" Margin="0 30 0 0" Height="35" Click="Search" Background="#FF12CABA" FontSize="20">Search
             </Button>
         </StackPanel>
-        <Label Content="FOOGLE" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="214" FontSize="48" FontFamily="Comic Sans MS" Foreground="#FF12CABA" FontStyle="Italic" FontWeight="Bold"/>
-        <ListView x:Name="results" Grid.Column="1" Background="#FF01B298" SelectionMode="Extended" FontSize="20" HorizontalAlignment="Stretch">
-            <ListViewItem HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,15,0,0">Coffee</ListViewItem>
-        </ListView>
+        <Label Content="FOOGLE" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="191" FontSize="48" FontFamily="Bahnschrift SemiBold SemiCondensed" Foreground="#FF12CABA" FontStyle="Italic" FontWeight="Bold"/>
+        <ListView x:Name="results" Grid.Column="1" Background="#FF01B298" SelectionMode="Extended" FontSize="20" Grid.RowSpan="2"></ListView>
+        <Label x:Name="queryTime" Content="" HorizontalAlignment="Left" Margin="52,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="-10.168,0.783" Grid.Row="1" FontSize="20"/>
+        <Label x:Name="rankTime" Content="" HorizontalAlignment="Left" Margin="269,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="-10.168,0.783" Grid.Row="1" FontSize="20"/>
 
     </Grid>
 </Window>
